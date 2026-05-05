@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_ga4__events
+    description: "Flattened GA4 events from public dataset"
+    columns:
+      - name: user_pseudo_id
+        description: "Anonymous user identifier"
+        tests:
+          - not_null
+      - name: event_name
+        description: "Type of event"
+        tests:
+          - not_null
+      - name: session_id
+        description: "GA4 session identifier"
+
+  - name: stg_ga4__sessions
+    description: "One row per user session with aggregated metrics"
+    columns:
+      - name: session_id
+        description: "GA4 session identifier"
+        tests:
+          - not_null
+      - name: user_pseudo_id
+        tests:
+          - not_null
