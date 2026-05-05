@@ -15,3 +15,15 @@ Derived session grain by grouping on user_pseudo_id + session_id.
 Added schema.yml with dbt tests: not_null on user_pseudo_id, event_name, session_id.
 Ran dbt test --select staging — all tests passed.
 Assumption noted: using user_pseudo_id for identity resolution (no cross-device stitching).
+
+## Entry 4 — Day 2
+Built intermediate model: int_session_touchpoints.
+Derived channel grouping from source/medium using CASE WHEN logic.
+Used ROW_NUMBER() window function to rank touchpoints per user ascending and descending.
+Assumption: 30-day lookback, user_pseudo_id as identity key, earliest timestamp wins tie-break.
+
+## Entry 5 — Day 2
+Built mart_first_click_attribution and mart_last_click_attribution.
+First click = touch_number_asc = 1, Last click = touch_number_desc = 1.
+Fixed GROUP BY error — BigQuery does not allow column position references with aggregations.
+All 7 dbt models passing. PASS=7 WARN=0 ERROR=0.
