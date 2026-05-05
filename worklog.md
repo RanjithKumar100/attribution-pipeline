@@ -34,3 +34,19 @@ BigQuery free tier does not support streaming inserts (insertAll API).
 Used load_table_from_json() batch load job instead — latency ~2-5s, free tier compatible.
 Deduplication handled via UUID event_id as unique row identifier.
 Successfully loaded 10 events into dbt_attribution.streamed_events.
+
+## Entry 7 — Day 3
+Built Streamlit dashboard with 4 panels:
+- Attribution totals: First-Click $29,602 vs Last-Click $29,279
+- 14-day time series (showing full 2021 dataset)
+- Channel breakdown bar chart
+- Live streamed events table
+Dashboard running at http://localhost:8501
+
+## Entry 8 — Day 3
+All deliverables complete:
+- dbt: 7 models passing, stg + int + mart layers
+- Attribution: First-click and Last-click models working
+- Streaming: 10 events loaded via batch load job
+- Dashboard: Streamlit with real BigQuery data
+- README and runbook complete
