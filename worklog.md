@@ -27,3 +27,10 @@ Built mart_first_click_attribution and mart_last_click_attribution.
 First click = touch_number_asc = 1, Last click = touch_number_desc = 1.
 Fixed GROUP BY error — BigQuery does not allow column position references with aggregations.
 All 7 dbt models passing. PASS=7 WARN=0 ERROR=0.
+
+## Entry 6 — Day 2
+Built stream_events.py to generate and load 10 sample events into BigQuery.
+BigQuery free tier does not support streaming inserts (insertAll API).
+Used load_table_from_json() batch load job instead — latency ~2-5s, free tier compatible.
+Deduplication handled via UUID event_id as unique row identifier.
+Successfully loaded 10 events into dbt_attribution.streamed_events.
